@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Notificação</string>
+    <string name="txTitulo">Exemplos de Notificação</string>
+    <string name="btNotifSimples">Notificação Simples</string>
+    <string name="btNotifAction">Notificação com botões</string>
+    <string name="btNotifResposta">Notificação com resposta</string>
+    <string name="txTituloNovaTela">Nova Tela</string>
+</resources>
