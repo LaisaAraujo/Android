@@ -35,7 +35,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
         SQLiteDatabase bd = getReadableDatabase(); //Abre a conexão
         String sql = null;
         //O método insert para inserir os dados que a empresa forneceu
-        sql = "INSERT INTO codigos (chave,autenticacao,dataHora,status) VALUES" +
+        sql = "INSERT INTO codigo (chave,autenticacao,dataHora,status) VALUES" +
                 " ('JH91HC','812j97f4298jnc2',1568026065,1),('PA83B7','m9ads78cj208jf4',1568026123,0)," +
                 "('HJ272A','981m98cmc8a12',1568026778,1),('99CY2P','98mcaks326174',1568027060,0)," +
                 "('278JMA','7812nca6123kas',1568027165,0);";
@@ -46,7 +46,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
         List<Chaves> listaChave = new ArrayList<Chaves>();
         SQLiteDatabase bd = getReadableDatabase(); //Abre a conexão
         //utilizando a classe Cursor para armazenar o conteúdo do SELECT
-        Cursor c = bd.rawQuery("SELECT * FROM codigos",new String[]{});
+        Cursor c = bd.rawQuery("SELECT * FROM codigo",new String[]{});
 
         //Testar para verificar se o SELECT retornou alguma coisa.
         if(c.moveToFirst()){
@@ -62,7 +62,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
 
     public boolean validarChave(String chave){
         SQLiteDatabase bd = getReadableDatabase(); //Abre a conexão
-        Cursor c = bd.rawQuery("SELECT * FROM codigos WHERE chave=?", new String[]{chave});
+        Cursor c = bd.rawQuery("SELECT * FROM codigo WHERE chave=?", new String[]{chave});
 
         //Verificar se o select retornou alguma coisa
         if(c.moveToFirst()){
@@ -77,13 +77,13 @@ public class BancoDeDados extends SQLiteOpenHelper {
 
     public boolean alterarStatus(String chave){
         SQLiteDatabase bd = getReadableDatabase(); //Abre a conexão
-        Cursor c = bd.rawQuery("SELECT * FROM codigos WHERE chave=? and status=?;",new String[]{chave, "0"});
+        Cursor c = bd.rawQuery("SELECT * FROM codigo WHERE chave=? and status=?;",new String[]{chave, "0"});
 
         //Verificar se o select retornou alguma coisa
         if(c.moveToFirst()){
             ContentValues valores = new ContentValues();
             valores.put("status", 1);
-            bd.update("codigos", valores, "chave=?", new String[]{chave}); //UPDATE codigos SET status=1 WHERE chave=?
+            bd.update("codigo", valores, "chave=?", new String[]{chave}); //UPDATE codigos SET status=1 WHERE chave=?
             return true;
         }
         bd.close();

@@ -24,27 +24,37 @@ public class BroadcastSMS extends BroadcastReceiver {
         //Utilizar a classe SmsSessage do Android para poder manipular os dados com os métodos da classe
 
         SmsMessage[] sms = new SmsMessage[pdus.length];
-        String  conteudoSMS = "";
-
+        String conteudoSMS = "";
         String conteudoMensagem = "";
-        long datahora = 0;
+        String chave = "";
+
         //Laço para percorer cada SMS/PDUs
-        for(int i=0; i<sms.length; i++){
+        for (int i = 0; i < sms.length; i++) {
             //Criando uma mensagem SMS à parit do PDU
             sms[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
             //Concatenando o conteúdo do SMS na variável conteudoSMS
-           // conteudoSMS += sms[i].getMessageBody();
+            conteudoSMS += sms[i].getMessageBody();
             //Recuperando o número de quem enviou o SMS
-            conteudoMensagem+= sms[i].getMessageBody();
+            conteudoMensagem += sms[i].getMessageBody();
         }//fim do laço for
+        BancoDeDados bd = new BancoDeDados(context, "bd", 1);
 
         int ind = conteudoSMS.indexOf(':');
-        if(ind != -1){
-            String chave = conteudoSMS.substring(ind+1,ind+7);
-
-            if (!new BancoDeDados(context, "bd", 1).validarChave(chave)) {
-                Toast.makeText(context, "Não existe", Toast.LENGTH_SHORT).show();
-            }
+        if (ind != -1) {
+            chave = conteudoSMS.substring(ind + 1, ind + 7);
         }
+        else {
+            chave = conteudoSMS;
+        }
+
+            try {
+                if (!bd.validarChave(chave.trim())) {
+                    Toast.makeText(context, "Não existe", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Existe", Toast.LENGTH_SHORT).show();
+                }
+            } catch (Exception ex) {
+                Toast.makeText(context, "Erro " + ex.getMessage(), Toast.LENGTH_SHORT).show();
+            }
     }
 }

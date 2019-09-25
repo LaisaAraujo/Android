@@ -15,6 +15,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        BancoDeDados bd = new BancoDeDados(this,"bd",1);
+
+        bd.InserirCodigo();
+
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS)!=
                 PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(
@@ -27,4 +31,6 @@ public class MainActivity extends AppCompatActivity {
                     this, new String[]{Manifest.permission.READ_SMS}, 101);
         }
     }
+
+
 }
