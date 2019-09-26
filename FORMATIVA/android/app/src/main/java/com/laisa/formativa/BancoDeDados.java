@@ -46,7 +46,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
         List<Chaves> listaChave = new ArrayList<Chaves>();
         SQLiteDatabase bd = getReadableDatabase(); //Abre a conexão
         //utilizando a classe Cursor para armazenar o conteúdo do SELECT
-        Cursor c = bd.rawQuery("SELECT * FROM codigo",new String[]{});
+        Cursor c = bd.rawQuery("SELECT * FROM codigo;",new String[]{});
 
         //Testar para verificar se o SELECT retornou alguma coisa.
         if(c.moveToFirst()){
@@ -62,7 +62,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
 
     public boolean validarChave(String chave){
         SQLiteDatabase bd = getReadableDatabase(); //Abre a conexão
-        Cursor c = bd.rawQuery("SELECT * FROM codigo WHERE chave=?", new String[]{chave});
+        Cursor c = bd.rawQuery("SELECT * FROM codigo WHERE chave=? and status=?;", new String[]{chave,"1"});
 
         //Verificar se o select retornou alguma coisa
         if(c.moveToFirst()){
@@ -88,6 +88,19 @@ public class BancoDeDados extends SQLiteOpenHelper {
         }
         bd.close();
         return false;
+    }
+
+
+    public String buscarAutenticação(String chave){
+        SQLiteDatabase bd = getReadableDatabase(); //Abre a conexão
+        Cursor c = bd.rawQuery("SELECT autenticacao FROM codigo WHERE chave=?;",new String[]{chave});
+
+        if(c.moveToFirst()){
+            return "" + c.getString(0);
+        }else{
+            bd.close();
+            return "Autenticação ou chave não existe, por favor verifique a chave";
+        }
     }
 
 
