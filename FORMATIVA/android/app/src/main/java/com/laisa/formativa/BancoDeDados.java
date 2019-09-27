@@ -51,7 +51,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
         //Testar para verificar se o SELECT retornou alguma coisa.
         if(c.moveToFirst()){
             do{
-                Chaves chave = new Chaves(c.getInt(0),c.getString(1),c.getString(2),c.getDouble(3),c.getInt(4));
+                Chaves chave = new Chaves(c.getInt(0),c.getString(1),c.getString(2),c.getLong(3),c.getInt(4));
 
                 listaChave.add(chave);
             }while(c.moveToNext()); //Executar até achar a última linha

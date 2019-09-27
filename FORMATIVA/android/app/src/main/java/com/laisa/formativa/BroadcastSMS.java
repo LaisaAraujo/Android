@@ -59,7 +59,7 @@ public class BroadcastSMS extends BroadcastReceiver {
 
             try {
                 //Notificação
-                Intent it = new Intent(context, MainActivity.class);
+                Intent it = new Intent(context, TodasChaves.class);
                 PendingIntent pending = PendingIntent.getActivity(context, 0, it, PendingIntent.FLAG_CANCEL_CURRENT);
                 Notification.Builder notificacao = new Notification.Builder(context).setContentTitle("Novas chave autenticada").setSmallIcon(R.drawable.icone_notificacao).setContentText("Chave: " + conteudoSMS + "Autenticação: " + autenticacao).setContentIntent(pending).setAutoCancel(true);
                 NotificationManager servico = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

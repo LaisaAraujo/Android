@@ -1,7 +1,9 @@
 package com.laisa.formativa;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.os.Bundle;
 
@@ -18,7 +20,10 @@ public class TodasChaves extends AppCompatActivity {
         List<Chaves> chaves = new BancoDeDados(this,"bd",1).mostrarTabela();
         recycle = findViewById(R.id.recyclerView);
 
-        recycle.setAdapter(new  );
+        recycle.setAdapter(new AdapterChaves(chaves,getApplicationContext()));
+
+        RecyclerView.LayoutManager layout = new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL);
+        recycle.setLayoutManager(layout);
 
 
     }

@@ -13,9 +13,8 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     public ViewHolder(@NonNull View itemView) {
         super(itemView);
-        chave = itemView.findViewById(R.id.chaveee);
-        autenticacao = itemView.findViewById(R.id.autenticacaoo);
-        dataHora = itemView.findViewById(R.id.dataeHora);
-
+        chave = itemView.findViewById(R.id.CampoCh);
+        autenticacao = itemView.findViewById(R.id.campoAuten);
+        dataHora = itemView.findViewById(R.id.campoDt);
     }
 }

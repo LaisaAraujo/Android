@@ -9,6 +9,8 @@ import android.view.contentcapture.ContentCaptureSession;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class AdapterChaves extends RecyclerView.Adapter {
@@ -28,20 +30,24 @@ public class AdapterChaves extends RecyclerView.Adapter {
         View view = LayoutInflater.from(context).inflate(R.layout.card,parent,false);
         com.laisa.formativa.ViewHolder vhChaves = new com.laisa.formativa.ViewHolder(view);
 
-        return null;
+        return vhChaves;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         com.laisa.formativa.ViewHolder vhChaves = (com.laisa.formativa.ViewHolder) holder;
         vhChaves.chave.setText(chaves.get(position).getChave());
-        vhChaves.autenticacao.setText(chaves.get(position).getChave());
-        vhChaves.chave.setText(chaves.get(position).getChave());
+        vhChaves.autenticacao.setText(chaves.get(position).getAutenticacao());
+
+        Date datahora = new Date (chaves.get (position).getDataHora());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM HH:mm:ss");
+        vhChaves.dataHora.setText(sdf.format(datahora));
+
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return chaves.size();
     }
 }

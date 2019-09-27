@@ -1,14 +1,17 @@
 package com.laisa.formativa;
 
+import android.widget.ImageView;
+
 public class Chaves {
 
     private int id;
     private String chave;
     private String autenticacao;
-    private double dataHota;
+    private long dataHota;
     private int status;
 
-    public Chaves(int id,String chave,String autenticacao,double dataHota,int status){
+
+    public Chaves(int id,String chave,String autenticacao,long dataHota,int status){
         this.id = id;
         this.chave = chave;
         this.autenticacao = autenticacao;
@@ -28,7 +31,7 @@ public class Chaves {
         return autenticacao;
     }
 
-    public double getDataHora(){
+    public long getDataHora(){
         return dataHota;
     }
 
